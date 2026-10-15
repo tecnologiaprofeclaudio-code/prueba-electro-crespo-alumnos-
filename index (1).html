@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electro Crespo | Instalaciones Eléctricas</title>
+<meta name="description" content="Electro Crespo ofrece instalaciones eléctricas, reparaciones, automatización del hogar y cámaras de seguridad. Soluciones eficientes y profesionales.">
+<meta property="og:title" content="Electro Crespo | Instalaciones Eléctricas">
+<meta property="og:description" content="Soluciones eléctricas pensadas para brindar seguridad, eficiencia y una instalación prolija.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --black-0:#050505;
+    --black-1:#080808;
+    --black-2:#111111;
+    --black-3:#1a1a1a;
+    --white:#ffffff;
+    --yellow:#ffd000;
+    --gray-mid:#5a5a5a;
+    --gray-light:#a8a8a8;
+    --font-display:'Archivo', 'Arial Narrow', Arial, sans-serif;
+    --font-body:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --max-w:1180px;
+    --radius:3px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
+  }
+  body{
+    margin:0;
+    background:var(--black-0);
+    color:var(--white);
+    font-family:var(--font-body);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  button{font-family:inherit;cursor:pointer;}
+  .container{max-width:var(--max-w);margin:0 auto;padding:0 24px;}
+  section{padding:96px 0;}
+  @media (max-width:680px){ section{padding:64px 0;} }
+
+  h1,h2,h3{font-family:var(--font-display);font-weight:900;line-height:1.05;margin:0;letter-spacing:-0.01em;}
+  h2{font-size:clamp(28px,4vw,42px);}
+  h3{font-size:19px;font-weight:700;}
+  p{margin:0;color:var(--gray-light);}
+  .eyebrow{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:13px;
+    color:var(--yellow);
+    margin-bottom:10px;
+    display:block;
+  }
+  .section-head{max-width:620px;margin-bottom:48px;}
+  .section-head p{margin-top:14px;font-size:16px;max-width:480px;}
+  :focus-visible{outline:2px solid var(--yellow);outline-offset:3px;}
+  [hidden]{display:none !important;}
+
+  /* ============ REVEAL ANIM ============ */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease), transform .7s var(--ease);}
+  .reveal.is-visible{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+
+  /* ============ LOGO ============ */
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand-bolt{width:22px;height:34px;flex-shrink:0;}
+  .brand-bolt path{fill:var(--yellow);}
+  .brand-text{font-family:var(--font-display);font-weight:900;font-size:19px;line-height:1;letter-spacing:-0.01em;}
+  .brand-text span{display:block;font-size:13px;color:var(--gray-light);font-weight:500;font-family:var(--font-body);margin-top:3px;letter-spacing:0;}
+
+  /* ============ HEADER ============ */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:200;
+    padding:22px 0;
+    transition:padding .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease);
+    background:transparent;
+  }
+  header.scrolled{
+    padding:13px 0;
+    background:rgba(5,5,5,.88);
+    backdrop-filter:blur(10px);
+    box-shadow:0 1px 0 var(--black-3);
+  }
+  header .container{display:flex;align-items:center;justify-content:space-between;}
+  .nav-desktop{display:flex;align-items:center;gap:36px;}
+  .nav-desktop a{
+    font-size:14px;font-weight:500;color:var(--white);
+    position:relative;padding:4px 0;
+  }
+  .nav-desktop a::after{
+    content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--yellow);
+    transition:width .25s var(--ease);
+  }
+  .nav-desktop a:hover::after,.nav-desktop a:focus-visible::after{width:100%;}
+  .nav-cta{
+    background:var(--yellow);color:var(--black-0) !important;
+    padding:10px 20px;border-radius:var(--radius);font-weight:700 !important;
+    transition:transform .2s var(--ease), background .2s var(--ease);
+  }
+  .nav-cta::after{display:none;}
+  .nav-cta:hover{background:#ffe033;transform:translateY(-1px);}
+
+  .hamburger{
+    display:none;background:none;border:none;padding:8px;width:40px;height:40px;
+    flex-direction:column;justify-content:center;align-items:center;gap:5px;
+    z-index:210;
+  }
+  .hamburger span{display:block;width:22px;height:2px;background:var(--white);transition:transform .3s var(--ease), opacity .3s var(--ease);}
+  .hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  .nav-mobile{
+    position:fixed;inset:0;background:var(--black-0);
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:28px;
+    transform:translateX(100%);transition:transform .35s var(--ease);
+    z-index:205;
+  }
+  .nav-mobile.open{transform:translateX(0);}
+  .nav-mobile a{font-family:var(--font-display);font-size:26px;font-weight:700;}
+
+  @media (max-width:860px){
+    .nav-desktop{display:none;}
+    .hamburger{display:flex;}
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    min-height:100vh;
+    display:flex;align-items:center;
+    position:relative;
+    padding-top:120px;
+    overflow:hidden;
+  }
+  .hero-bg{
+    position:absolute;inset:0;z-index:0;
+    background:
+      radial-gradient(circle at 82% 18%, rgba(255,208,0,.10), transparent 45%),
+      radial-gradient(circle at 10% 90%, rgba(255,208,0,.05), transparent 40%);
+  }
+  .hero-circuits{position:absolute;right:-8%;top:50%;transform:translateY(-50%);width:640px;max-width:70vw;opacity:.35;z-index:0;}
+  .hero-circuits line, .hero-circuits circle{stroke:var(--yellow);}
+  .hero .container{position:relative;z-index:1;}
+  .hero-inner{max-width:680px;}
+  .hero-kicker{display:flex;align-items:center;gap:10px;margin-bottom:22px;}
+  .hero-kicker .brand-bolt{width:16px;height:25px;}
+  .hero-kicker span{font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.04em;color:var(--yellow);}
+  .hero h1{font-size:clamp(44px,8vw,86px);}
+  .hero-title{display:flex;align-items:center;gap:.28em;}
+  .hero-bolt{height:1.9em;width:auto;flex-shrink:0;}
+  .hero-bolt path{fill:var(--yellow);}
+  .hero-sub{font-family:var(--font-display);font-weight:700;color:var(--white);font-size:clamp(17px,2.4vw,22px);margin-top:18px;max-width:520px;}
+  .hero-desc{margin-top:18px;font-size:16px;max-width:460px;}
+  .hero-ctas{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:14px 26px;border-radius:var(--radius);
+    font-weight:700;font-size:15px;font-family:var(--font-body);
+    border:1.5px solid transparent;
+    transition:transform .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
+  }
+  .btn-solid{background:var(--yellow);color:var(--black-0);}
+  .btn-solid:hover{background:#ffe033;transform:translateY(-2px);}
+  .btn-outline{border-color:var(--black-3);color:var(--white);}
+  .btn-outline:hover{border-color:var(--white);transform:translateY(-2px);}
+
+  .hero-anim{animation:heroFade .9s var(--ease) both;}
+  .hero-anim.d1{animation-delay:.08s;}
+  .hero-anim.d2{animation-delay:.18s;}
+  .hero-anim.d3{animation-delay:.28s;}
+  .hero-anim.d4{animation-delay:.38s;}
+  @keyframes heroFade{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+  @media (prefers-reduced-motion: reduce){.hero-anim{animation:none;}}
+
+  /* ============ SOBRE MI ============ */
+  .about{display:grid;grid-template-columns:320px 1fr;gap:64px;align-items:start;}
+  @media (max-width:800px){.about{grid-template-columns:1fr;gap:36px;}}
+  .about-photo{
+    position:relative;width:100%;aspect-ratio:4/5;
+    border:1px solid var(--black-3);border-radius:var(--radius);
+    overflow:hidden;background:var(--black-1);
+  }
+  .about-photo img{width:100%;height:100%;object-fit:cover;}
+  .about-photo-fallback{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+    color:var(--gray-mid);
+  }
+  .about-photo-fallback svg{width:52px;height:52px;stroke:var(--gray-mid);}
+  .about-photo-fallback span{font-size:12px;color:var(--gray-mid);max-width:160px;text-align:center;}
+  .about-name{font-size:24px;margin-top:20px;}
+  .about-role{color:var(--yellow);font-family:var(--font-display);font-weight:700;font-size:14px;margin-top:4px;display:block;}
+  .about-text{margin-top:22px;font-size:16px;max-width:560px;}
+  .about-features{margin-top:30px;display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;}
+  @media (max-width:520px){.about-features{grid-template-columns:1fr;}}
+  .about-features li{display:flex;align-items:flex-start;gap:10px;font-size:14.5px;color:var(--white);}
+  .about-features svg{width:16px;height:16px;flex-shrink:0;margin-top:3px;stroke:var(--yellow);}
+
+  /* ============ SERVICIOS ============ */
+  .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--black-3);border:1px solid var(--black-3);}
+  @media (max-width:760px){.services-grid{grid-template-columns:1fr;}}
+  .service-card{
+    background:var(--black-1);padding:38px 32px;
+    border-left:2px solid transparent;
+    transition:border-color .25s var(--ease), background .25s var(--ease);
+  }
+  .service-card:hover{border-left-color:var(--yellow);background:var(--black-2);}
+  .service-icon{width:40px;height:40px;stroke:var(--yellow);margin-bottom:22px;}
+  .service-card h3{margin-bottom:10px;}
+  .service-card p{font-size:14.5px;}
+  .service-link{
+    display:inline-flex;align-items:center;gap:6px;margin-top:20px;
+    font-size:13.5px;font-weight:700;color:var(--yellow);
+    border-bottom:1px solid transparent;
+  }
+  .service-link:hover{border-bottom-color:var(--yellow);}
+
+  /* ============ POR QUE ELEGIR ============ */
+  .why{background:var(--black-1);}
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--black-3);}
+  @media (max-width:900px){.why-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:520px){.why-grid{grid-template-columns:1fr;}}
+  .why-card{background:var(--black-1);padding:34px 26px;}
+  .why-card svg{width:30px;height:30px;stroke:var(--yellow);margin-bottom:18px;}
+  .why-card h3{font-size:16px;margin-bottom:8px;letter-spacing:.02em;}
+  .why-card p{font-size:14px;}
+
+  /* ============ PROCESO ============ */
+  .process-list{position:relative;}
+  .process-item{
+    display:grid;grid-template-columns:90px 1fr;gap:28px;
+    padding:28px 0;border-top:1px solid var(--black-3);
+  }
+  .process-item:last-child{border-bottom:1px solid var(--black-3);}
+  .process-num{font-family:var(--font-display);font-weight:900;font-size:34px;color:var(--yellow);line-height:1;}
+  .process-item h3{margin-bottom:6px;}
+  .process-item p{font-size:14.5px;max-width:460px;}
+  @media (max-width:560px){.process-item{grid-template-columns:50px 1fr;gap:16px;}.process-num{font-size:24px;}}
+
+  /* ============ TESTIMONIOS ============ */
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  @media (max-width:860px){.testi-grid{grid-template-columns:1fr;}}
+  .testi-card{
+    border:1px solid var(--black-3);border-radius:var(--radius);padding:32px 26px;
+    background:var(--black-1);display:flex;flex-direction:column;gap:18px;min-height:190px;justify-content:space-between;
+  }
+  .testi-quote{font-size:14.5px;color:var(--gray-light);font-style:normal;}
+  .testi-who{display:flex;align-items:center;gap:10px;}
+  .testi-avatar{width:34px;height:34px;border-radius:50%;background:var(--black-3);flex-shrink:0;}
+  .testi-who span{font-size:13px;color:var(--gray-mid);}
+
+  /* ============ FAQ ============ */
+  .faq-list{max-width:760px;}
+  .faq-item{border-bottom:1px solid var(--black-3);}
+  .faq-q{
+    width:100%;background:none;border:none;color:var(--white);
+    display:flex;justify-content:space-between;align-items:center;gap:20px;
+    padding:22px 0;text-align:left;font-family:var(--font-body);font-size:16px;font-weight:600;
+  }
+  .faq-q .plus{width:18px;height:18px;flex-shrink:0;position:relative;}
+  .faq-q .plus::before,.faq-q .plus::after{content:'';position:absolute;background:var(--yellow);transition:transform .3s var(--ease);}
+  .faq-q .plus::before{top:50%;left:0;width:100%;height:2px;transform:translateY(-50%);}
+  .faq-q .plus::after{left:50%;top:0;height:100%;width:2px;transform:translateX(-50%);}
+  .faq-item.open .plus::after{transform:translateX(-50%) rotate(90deg);opacity:0;}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s var(--ease);}
+  .faq-a p{padding:0 0 22px;font-size:14.5px;max-width:620px;}
+
+  /* ============ CONTACTO ============ */
+  .contact-wrap{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;}
+  @media (max-width:860px){.contact-wrap{grid-template-columns:1fr;gap:36px;}}
+  .contact-info p{font-size:15.5px;margin-top:14px;max-width:360px;}
+  .contact-channels{margin-top:30px;display:flex;flex-direction:column;gap:16px;}
+  .contact-channel{display:flex;align-items:center;gap:12px;font-size:14.5px;}
+  .contact-channel svg{width:18px;height:18px;stroke:var(--yellow);flex-shrink:0;}
+  .contact-channel a:hover,footer .footer-contact a:hover{color:var(--yellow);}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:13px;color:var(--gray-light);margin-bottom:7px;}
+  .field input,.field select,.field textarea{
+    width:100%;background:var(--black-1);border:1px solid var(--black-3);border-radius:var(--radius);
+    padding:13px 14px;color:var(--white);font-family:var(--font-body);font-size:14.5px;
+    transition:border-color .2s var(--ease);
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--yellow);outline:none;}
+  .field textarea{resize:vertical;min-height:110px;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  @media (max-width:480px){.field-row{grid-template-columns:1fr;}}
+  .form-msg{font-size:13.5px;margin-top:4px;min-height:18px;}
+  .form-msg.error{color:#ff6b6b;}
+
+  /* ============ FLOATING BUTTONS ============ */
+  .float-stack{
+    position:fixed;right:18px;bottom:22px;z-index:150;
+    display:flex;flex-direction:column;gap:12px;
+  }
+  .float-btn{
+    width:50px;height:50px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--black-2);border:1px solid var(--black-3);
+    position:relative;
+    opacity:0;transform:translateX(20px) scale(.9);
+    animation:floatIn .5s var(--ease) forwards;
+    transition:transform .2s var(--ease), background .2s var(--ease), border-color .2s var(--ease);
+  }
+  .float-btn:nth-child(1){animation-delay:.5s;}
+  .float-btn:nth-child(2){animation-delay:.62s;}
+  @keyframes floatIn{to{opacity:1;transform:translateX(0) scale(1);}}
+  @media (prefers-reduced-motion: reduce){.float-btn{animation:none;opacity:1;transform:none;}}
+  .float-btn svg{width:22px;height:22px;stroke:var(--white);transition:stroke .2s var(--ease);}
+  .float-btn:hover{transform:scale(1.08);border-color:var(--yellow);}
+  .float-btn:hover svg{stroke:var(--yellow);}
+  .float-btn.whatsapp{background:var(--yellow);border-color:var(--yellow);}
+  .float-btn.whatsapp svg{stroke:var(--black-0);}
+  .float-btn.whatsapp:hover{transform:scale(1.08);}
+  .float-tooltip{
+    position:absolute;right:62px;top:50%;transform:translateY(-50%);
+    background:var(--white);color:var(--black-0);font-size:12.5px;font-weight:600;
+    padding:6px 11px;border-radius:3px;white-space:nowrap;
+    opacity:0;pointer-events:none;transition:opacity .2s var(--ease);
+  }
+  .float-btn:hover .float-tooltip,.float-btn:focus-visible .float-tooltip{opacity:1;}
+  @media (max-width:600px){
+    .float-stack{right:12px;bottom:14px;gap:10px;}
+    .float-btn{width:46px;height:46px;}
+    .float-tooltip{display:none;}
+  }
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--black-1);border-top:1px solid var(--black-3);padding:64px 0 28px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;}
+  @media (max-width:760px){.footer-grid{grid-template-columns:1fr;gap:36px;}}
+  .footer-tagline{margin-top:16px;font-size:14px;max-width:280px;}
+  .footer-social{display:flex;gap:12px;margin-top:22px;}
+  .footer-social a{
+    width:38px;height:38px;border-radius:50%;border:1px solid var(--black-3);
+    display:flex;align-items:center;justify-content:center;transition:border-color .2s var(--ease);
+  }
+  .footer-social a:hover{border-color:var(--yellow);}
+  .footer-social svg{width:17px;height:17px;stroke:var(--white);}
+  footer h4{font-family:var(--font-display);font-size:13.5px;font-weight:700;color:var(--gray-light);letter-spacing:.03em;margin-bottom:18px;}
+  footer .footer-links li{margin-bottom:11px;font-size:14px;}
+  footer .footer-links a:hover{color:var(--yellow);}
+  footer .footer-contact li{margin-bottom:11px;font-size:14px;color:var(--gray-light);}
+  .footer-bottom{
+    margin-top:56px;padding-top:24px;border-top:1px solid var(--black-3);
+    font-size:12.5px;color:var(--gray-mid);
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header id="siteHeader">
+  <div class="container">
+    <a href="#inicio" class="brand" aria-label="Electro Crespo - Inicio">
+      <svg class="brand-bolt" viewBox="0 0 24 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M14.5 0L2 21h7.5L7 38 22 15h-8L14.5 0z"/>
+      </svg>
+      <span class="brand-text">ELECTRO<br>CRESPO</span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Navegación principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto" class="nav-cta">Contacto</a>
+    </nav>
+
+    <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobile">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<nav class="nav-mobile" id="navMobile" aria-label="Navegación móvil">
+  <a href="#inicio">Inicio</a>
+  <a href="#sobre-mi">Sobre mí</a>
+  <a href="#servicios">Servicios</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="inicio">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <svg class="hero-circuits" viewBox="0 0 500 400" fill="none" aria-hidden="true">
+    <line x1="0" y1="80" x2="220" y2="80" stroke-width="1.5"/>
+    <line x1="220" y1="80" x2="220" y2="180" stroke-width="1.5"/>
+    <line x1="220" y1="180" x2="420" y2="180" stroke-width="1.5"/>
+    <line x1="60" y1="260" x2="300" y2="260" stroke-width="1.5"/>
+    <line x1="300" y1="260" x2="300" y2="350" stroke-width="1.5"/>
+    <circle cx="220" cy="80" r="4"/>
+    <circle cx="220" cy="180" r="4"/>
+    <circle cx="420" cy="180" r="4"/>
+    <circle cx="300" cy="260" r="4"/>
+    <circle cx="300" cy="350" r="4"/>
+  </svg>
+  <div class="container">
+    <div class="hero-inner">
+      <h1 class="hero-title hero-anim d1">
+        <svg class="hero-bolt" viewBox="0 0 24 38" fill="none" aria-hidden="true"><path d="M14.5 0L2 21h7.5L7 38 22 15h-8L14.5 0z"/></svg>
+        <span>ELECTRO<br>CRESPO</span>
+      </h1>
+      <p class="hero-sub hero-anim d2">Instalaciones eléctricas para hogares y comercios.</p>
+      <p class="hero-desc hero-anim d3">Soluciones eléctricas pensadas para brindar seguridad, eficiencia y una instalación prolija.</p>
+      <div class="hero-ctas hero-anim d4">
+        <a href="#contacto" class="btn btn-solid">Solicitar presupuesto</a>
+        <a href="#servicios" class="btn btn-outline">Ver servicios</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOBRE MI ============ -->
+<section id="sobre-mi">
+  <div class="container about">
+    <div class="about-photo reveal">
+      <img id="aboutPhoto" alt="Claudio Müller, electricista de Electro Crespo" loading="lazy"
+           onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="about-photo-fallback" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+        <span>Fotografía de Claudio próximamente</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Sobre mí</span>
+      <h2>Soluciones eléctricas con criterio y cercanía</h2>
+      <div class="about-name">Claudio Müller<span class="about-role">ELECTRICISTA</span></div>
+      <p class="about-text">Soy Claudio Müller y me dedico a brindar soluciones eléctricas para hogares y comercios, buscando que cada instalación sea segura, eficiente y prolija.</p>
+      <ul class="about-features">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Atención personalizada</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Trabajo prolijo</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Soluciones adaptadas a cada necesidad</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Orientación hacia la eficiencia y la seguridad</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICIOS ============ -->
+<section id="servicios">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Servicios</span>
+      <h2>Qué podemos resolver juntos</h2>
+    </div>
+  </div>
+  <div class="container">
+    <div class="services-grid reveal">
+
+      <article class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+        <h3>Instalaciones eléctricas</h3>
+        <p>Instalaciones eléctricas domiciliarias y comerciales, desde nuevas instalaciones hasta ampliaciones y modificaciones.</p>
+        <a class="service-link" href="#" data-service="Instalaciones eléctricas">Consultar →</a>
+      </article>
+
+      <article class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M8 11h6M11 8v6"/></svg>
+        <h3>Reparaciones eléctricas</h3>
+        <p>Diagnóstico y solución de problemas eléctricos, fallas, conexiones y mantenimiento.</p>
+        <a class="service-link" href="#" data-service="Reparaciones eléctricas">Consultar →</a>
+      </article>
+
+      <article class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M4 9h1M4 15h1M19 9h1M19 15h1M9 4v1M15 4v1M9 19v1M15 19v1"/></svg>
+        <h3>Domótica y automatización</h3>
+        <p>Soluciones para automatizar iluminación, dispositivos y diferentes funciones del hogar.</p>
+        <a class="service-link" href="#" data-service="Domótica y automatización">Consultar →</a>
+      </article>
+
+      <article class="service-card">
+        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="2" y="7" width="14" height="11" rx="2"/><path d="M16 10l6-3v10l-6-3"/><circle cx="9" cy="12.5" r="2.5"/></svg>
+        <h3>Cámaras de seguridad</h3>
+        <p>Instalación y configuración de sistemas de cámaras para mejorar la seguridad del hogar o comercio.</p>
+        <a class="service-link" href="#" data-service="Cámaras de seguridad">Consultar →</a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ POR QUE ELEGIR ============ -->
+<section class="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Por qué elegir Electro Crespo</span>
+      <h2>Criterios que guían cada trabajo</h2>
+    </div>
+  </div>
+  <div class="container">
+    <div class="why-grid reveal">
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4z"/></svg>
+        <h3>Seguridad</h3>
+        <p>Instalaciones pensadas priorizando la seguridad eléctrica.</p>
+      </div>
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+        <h3>Eficiencia</h3>
+        <p>Soluciones orientadas a un uso eficiente de la energía.</p>
+      </div>
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M4 20l4-1 11-11-3-3L5 16l-1 4z"/><path d="M14 6l3 3"/></svg>
+        <h3>Prolijidad</h3>
+        <p>Cuidar los detalles y la terminación del trabajo.</p>
+      </div>
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+        <h3>Atención personalizada</h3>
+        <p>Cada proyecto se analiza según las necesidades del cliente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESO ============ -->
+<section id="proceso">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Proceso de trabajo</span>
+      <h2>¿Cómo trabajamos?</h2>
+    </div>
+    <div class="process-list reveal">
+      <div class="process-item">
+        <span class="process-num">01</span>
+        <div><h3>Consulta</h3><p>El cliente cuenta qué necesita.</p></div>
+      </div>
+      <div class="process-item">
+        <span class="process-num">02</span>
+        <div><h3>Evaluación</h3><p>Se analiza el trabajo y las posibles soluciones.</p></div>
+      </div>
+      <div class="process-item">
+        <span class="process-num">03</span>
+        <div><h3>Presupuesto</h3><p>Se presenta una propuesta acorde al trabajo solicitado.</p></div>
+      </div>
+      <div class="process-item">
+        <span class="process-num">04</span>
+        <div><h3>Realización</h3><p>Se lleva adelante el trabajo buscando seguridad, eficiencia y prolijidad.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIOS ============ -->
+<section id="testimonios">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Testimonios</span>
+      <h2>Lo que dicen nuestros clientes</h2>
+    </div>
+    <div class="testi-grid reveal">
+      <div class="testi-card">
+        <p class="testi-quote">Próximamente podrás leer las experiencias de nuestros clientes.</p>
+        <div class="testi-who"><div class="testi-avatar"></div><span>Testimonio próximamente</span></div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">Próximamente podrás leer las experiencias de nuestros clientes.</p>
+        <div class="testi-who"><div class="testi-avatar"></div><span>Testimonio próximamente</span></div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">Próximamente podrás leer las experiencias de nuestros clientes.</p>
+        <div class="testi-who"><div class="testi-avatar"></div><span>Testimonio próximamente</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2>Lo que más preguntan</h2>
+    </div>
+    <div class="faq-list reveal" id="faqList">
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">¿Qué tipo de trabajos realizan?<span class="plus"></span></button>
+        <div class="faq-a"><p>Trabajamos en instalaciones eléctricas, reparaciones, domótica y automatización, y cámaras de seguridad, tanto para hogares como para comercios.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">¿Realizan instalaciones eléctricas nuevas?<span class="plus"></span></button>
+        <div class="faq-a"><p>Sí, realizamos instalaciones eléctricas nuevas, además de ampliaciones y modificaciones sobre instalaciones existentes.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">¿Trabajan con domótica?<span class="plus"></span></button>
+        <div class="faq-a"><p>Sí, ofrecemos soluciones de domótica y automatización para iluminación y distintas funciones del hogar.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">¿Instalan cámaras de seguridad?<span class="plus"></span></button>
+        <div class="faq-a"><p>Sí, instalamos y configuramos sistemas de cámaras para mejorar la seguridad de tu hogar o comercio.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">¿Cómo puedo solicitar un presupuesto?<span class="plus"></span></button>
+        <div class="faq-a"><p>Podés escribirnos desde el formulario de contacto o directamente por WhatsApp, contándonos qué necesitás.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">¿Trabajan con hogares y comercios?<span class="plus"></span></button>
+        <div class="faq-a"><p>Sí, realizamos trabajos tanto en viviendas particulares como en locales comerciales.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section id="contacto">
+  <div class="container">
+    <div class="contact-wrap">
+      <div class="contact-info reveal">
+        <span class="eyebrow">Contacto</span>
+        <h2>¿Necesitás un trabajo eléctrico?</h2>
+        <p>Contame qué necesitás y nos ponemos en contacto.</p>
+        <div class="contact-channels">
+          <div class="contact-channel"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3l2 5-2.5 1.5a11 11 0 005 5L14 12l5 2v3a2 2 0 01-2 2A16 16 0 013 5z"/></svg><a id="chanWhatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a></div>
+          <div class="contact-channel"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg><a id="chanInstagram" href="#" target="_blank" rel="noopener">Instagram</a></div>
+          <div class="contact-channel" id="chanPhoneWrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M3 5a2 2 0 012-2h3l2 5-2.5 1.5a11 11 0 005 5L14 12l5 2v3a2 2 0 01-2 2A16 16 0 013 5z"/></svg><a id="chanPhone" href="#"></a></div>
+          <div class="contact-channel" id="chanEmailWrap" hidden><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a id="chanEmail" href="#"></a></div>
+        </div>
+      </div>
+
+      <form class="contact-form reveal" id="contactForm" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-nombre">Nombre</label>
+            <input type="text" id="f-nombre" name="nombre" required>
+          </div>
+          <div class="field">
+            <label for="f-telefono">Teléfono</label>
+            <input type="tel" id="f-telefono" name="telefono" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input type="email" id="f-email" name="email">
+        </div>
+        <div class="field">
+          <label for="f-servicio">Servicio de interés</label>
+          <select id="f-servicio" name="servicio">
+            <option value="Instalaciones eléctricas">Instalaciones eléctricas</option>
+            <option value="Reparaciones eléctricas">Reparaciones eléctricas</option>
+            <option value="Domótica y automatización">Domótica y automatización</option>
+            <option value="Cámaras de seguridad">Cámaras de seguridad</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-mensaje">Mensaje</label>
+          <textarea id="f-mensaje" name="mensaje" required></textarea>
+        </div>
+        <p class="form-msg" id="formMsg"></p>
+        <button type="submit" class="btn btn-solid">Enviar consulta</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FLOATING BUTTONS ============ -->
+<div class="float-stack" aria-label="Contacto rápido">
+  <a class="float-btn" id="floatInstagram" href="#" target="_blank" rel="noopener" aria-label="Abrir Instagram de Electro Crespo">
+    <span class="float-tooltip">Instagram</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+  </a>
+    <a class="float-btn whatsapp" id="floatWhatsapp" href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp a Electro Crespo">
+    <span class="float-tooltip">WhatsApp</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 5a2 2 0 012-2h3l2 5-2.5 1.5a11 11 0 005 5L14 12l5 2v3a2 2 0 01-2 2A16 16 0 013 5z"/></svg>
+  </a>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand">
+          <svg class="brand-bolt" viewBox="0 0 24 38" fill="none" aria-hidden="true"><path d="M14.5 0L2 21h7.5L7 38 22 15h-8L14.5 0z"/></svg>
+          <span class="brand-text">ELECTRO<br>CRESPO</span>
+        </div>
+        <div style="margin-top:14px;font-size:14px;color:var(--gray-light);">Claudio Müller — Electricista</div>
+        <p class="footer-tagline">Soluciones eléctricas para tu hogar y comercio.</p>
+        <div class="footer-social">
+          <a href="#" id="footerInstagram" target="_blank" rel="noopener" aria-label="Instagram de Electro Crespo">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+                    <a href="#" id="footerWhatsapp" target="_blank" rel="noopener" aria-label="WhatsApp de Electro Crespo">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 5a2 2 0 012-2h3l2 5-2.5 1.5a11 11 0 005 5L14 12l5 2v3a2 2 0 01-2 2A16 16 0 013 5z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Enlaces rápidos</h4>
+        <ul class="footer-links">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contacto</h4>
+        <ul class="footer-contact">
+          <li><a id="footerWaLink" href="#" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li id="footerPhoneLi"><a id="footerPhoneLink" href="#"></a></li>
+          <li id="footerEmailLi" hidden><a id="footerEmailLink" href="#"></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">© 2026 Electro Crespo. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ================= VARIABLES EDITABLES ================= */
+  const WHATSAPP_NUMBER = "3434638450";                      // número local (código de área + número). Se agrega 549 automáticamente.
+  const PHONE_NUMBER    = "3434638450";                      // teléfono de contacto
+  const INSTAGRAM_URL   = "https://instagram.com/electro.crespo";
+  const EMAIL_ADDRESS   = "";                                // REEMPLAZAR: ej. "contacto@electrocrespo.com". Si queda vacío, no se muestra.
+  const ABOUT_PHOTO     = "images/claudio-muller.jpg";       // ruta de la foto de "Sobre mí"
+
+  /* ================= HELPERS ================= */
+  function waNumber(){
+    let d = String(WHATSAPP_NUMBER).replace(/\D/g, "");
+    if(!d.startsWith("54")){ d = "549" + d.replace(/^0+/, ""); }
+    return d;
+  }
+  function waUrl(text){
+    return "https://wa.me/" + waNumber() + (text ? "?text=" + encodeURIComponent(text) : "");
+  }
+  function formatPhone(n){
+    const d = String(n).replace(/\D/g, "");
+    return d.length === 10 ? d.slice(0,3) + " " + d.slice(3,6) + " " + d.slice(6) : d;
+  }
+
+  /* ================= APLICAR VARIABLES ================= */
+  document.getElementById("aboutPhoto").src = ABOUT_PHOTO;
+  document.getElementById("floatInstagram").href = INSTAGRAM_URL;
+  document.getElementById("floatWhatsapp").href = waUrl("");
+  document.getElementById("footerInstagram").href = INSTAGRAM_URL;
+  document.getElementById("footerWhatsapp").href = waUrl("");
+  document.getElementById("chanWhatsapp").href = waUrl("");
+  document.getElementById("chanInstagram").href = INSTAGRAM_URL;
+  document.getElementById("footerWaLink").href = waUrl("");
+
+  const phoneHref = "tel:+54" + String(PHONE_NUMBER).replace(/\D/g, "");
+  ["chanPhone","footerPhoneLink"].forEach(function(id){
+    const el = document.getElementById(id);
+    el.textContent = formatPhone(PHONE_NUMBER);
+    el.href = phoneHref;
+  });
+  if(EMAIL_ADDRESS){
+    ["chanEmail","footerEmailLink"].forEach(function(id){
+      const el = document.getElementById(id);
+      el.textContent = EMAIL_ADDRESS;
+      el.href = "mailto:" + EMAIL_ADDRESS;
+    });
+    document.getElementById("chanEmailWrap").hidden = false;
+    document.getElementById("footerEmailLi").hidden = false;
+  }
+
+  /* ================= HEADER SCROLL ================= */
+  const header = document.getElementById("siteHeader");
+  function onScroll(){
+    if(window.scrollY > 40){ header.classList.add("scrolled"); }
+    else{ header.classList.remove("scrolled"); }
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  /* ================= MENU MOBILE ================= */
+  const hamburger = document.getElementById("hamburgerBtn");
+  const navMobile = document.getElementById("navMobile");
+  function closeMenu(){
+    navMobile.classList.remove("open");
+    hamburger.setAttribute("aria-expanded","false");
+    hamburger.setAttribute("aria-label","Abrir menú");
+  }
+  function openMenu(){
+    navMobile.classList.add("open");
+    hamburger.setAttribute("aria-expanded","true");
+    hamburger.setAttribute("aria-label","Cerrar menú");
+  }
+  hamburger.addEventListener("click", function(){
+    const isOpen = navMobile.classList.contains("open");
+    isOpen ? closeMenu() : openMenu();
+  });
+  navMobile.querySelectorAll("a").forEach(function(a){
+    a.addEventListener("click", closeMenu);
+  });
+
+  /* ================= REVEAL ON SCROLL ================= */
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const revealEls = document.querySelectorAll(".reveal");
+  if("IntersectionObserver" in window && !reduceMotion){
+    const io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:"0px 0px -40px 0px"});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add("is-visible"); });
+  }
+
+  /* ================= FAQ ACCORDION ================= */
+  document.querySelectorAll(".faq-item").forEach(function(item){
+    const btn = item.querySelector(".faq-q");
+    const answer = item.querySelector(".faq-a");
+    btn.addEventListener("click", function(){
+      const isOpen = item.classList.contains("open");
+      document.querySelectorAll(".faq-item.open").forEach(function(openItem){
+        if(openItem !== item){
+          openItem.classList.remove("open");
+          openItem.querySelector(".faq-q").setAttribute("aria-expanded","false");
+          openItem.querySelector(".faq-a").style.maxHeight = null;
+        }
+      });
+      if(isOpen){
+        item.classList.remove("open");
+        btn.setAttribute("aria-expanded","false");
+        answer.style.maxHeight = null;
+      } else {
+        item.classList.add("open");
+        btn.setAttribute("aria-expanded","true");
+        answer.style.maxHeight = answer.scrollHeight + "px";
+      }
+    });
+  });
+
+  /* ================= SERVICE "CONSULTAR" -> WHATSAPP ================= */
+  document.querySelectorAll(".service-link[data-service]").forEach(function(link){
+    link.addEventListener("click", function(e){
+      e.preventDefault();
+      const service = link.getAttribute("data-service");
+      const msg = "Hola Claudio, quiero consultar por el servicio de " + service + " de Electro Crespo.";
+      window.open(waUrl(msg), "_blank", "noopener");
+    });
+  });
+
+  /* ================= FORMULARIO DE CONTACTO ================= */
+  const form = document.getElementById("contactForm");
+  const formMsg = document.getElementById("formMsg");
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    const nombre = form.nombre.value.trim();
+    const telefono = form.telefono.value.trim();
+    const email = form.email.value.trim();
+    const servicio = form.servicio.value;
+    const mensaje = form.mensaje.value.trim();
+
+    if(!nombre || !telefono || !mensaje){
+      formMsg.textContent = "Completá nombre, teléfono y mensaje para continuar.";
+      formMsg.classList.add("error");
+      return;
+    }
+    formMsg.textContent = "";
+    formMsg.classList.remove("error");
+
+    let texto = "Hola Claudio, quiero realizar una consulta sobre un servicio de Electro Crespo.\n\n";
+    texto += "Nombre: " + nombre + "\n";
+    texto += "Teléfono: " + telefono + "\n";
+    if(email){ texto += "Email: " + email + "\n"; }
+    texto += "Servicio: " + servicio + "\n";
+    texto += "Mensaje: " + mensaje;
+
+    window.open(waUrl(texto), "_blank", "noopener");
+    form.reset();
+  });
+
+})();
+</script>
+</body>
+</html>
